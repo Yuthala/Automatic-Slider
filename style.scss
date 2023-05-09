@@ -23,7 +23,7 @@ h1 {
 	object-fit: cover;
 	animation-name: Appearance;
 	animation-duration: 1s;
-	-o-animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
+	animation-timing-function: cubic-bezier(.1, -.6, .2, 0);
 }
 
 @keyframes Appearance {

@@ -1,25 +1,16 @@
-//TO DO
-// сделать transition слайдов
-// написать комментарии  в коде, html, css
-// оформить read me
-
-
-
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() { //загрузка кода после того как загружены элементы DOM-дерева
 
 	'use strict';
 	
-	// Slider
+		let slideIndex = 1,  //Индекс слайда
+		slides = document.querySelectorAll('.slider-item'), //получаем со страницы все <div> с изображениями
+		prev = document.querySelector('.prev'), //получаем элементы управления слайдером (вперед-назад)
+		next = document.querySelector('.next'), 
+		dotsWrap = document.querySelector('.slider-dots'),//получаем "обертку" точек
+		dots = document.querySelectorAll('.dot'); //получаем точки
 	
-		let slideIndex = 1,  //Параметр текущего слайда
-		slides = document.querySelectorAll('.slider-item'),
-		prev = document.querySelector('.prev'),
-		next = document.querySelector('.next'),
-		dotsWrap = document.querySelector('.slider-dots'),
-		dots = document.querySelectorAll('.dot');
-	
-		showSlides(slideIndex);
-		setInterval(plusSlides, 3000);
+		showSlides(slideIndex);//вызываем функцию, которая перелистывает слайдер вручную
+		setInterval(plusSlides, 3000); //вызываем функцию, которая перелистывает слайдер автоматически
 
 		//функция, показывающая и скрывающая слайды и точки
 		function showSlides() {
@@ -34,33 +25,34 @@ window.addEventListener('DOMContentLoaded', function() {
 			slides.forEach((item) => item.classList.remove('slider-item-active')); //скрываем все слайды
 			dots.forEach((item) => item.classList.remove('dot-active')); //скрываем точки
 
-			slides[slideIndex - 1].classList.add('slider-item-active'); //показываем первый слайд (slideIndex = 0)
+			slides[slideIndex - 1].classList.add('slider-item-active'); //показываем первый слайд (slideIndex = 0). Изначально slideIndex = 1, поэтому уменьшаем на единицу
 			dots[slideIndex - 1].classList.add('dot-active'); //показываем первую точку
 		}
+
 		//функция, показывающая следующий слайд
 		function plusSlides() {
-			//showSlides(slideIndex += n); 
-			slideIndex ++;
-			showSlides();
+			slideIndex ++; //увеличиваем slideIndex на единицу
+			showSlides();//запускаем функцию showSlides
 		}
 
-		//показываем предыдущий слайд по клику "назад"
+		//показываем предыдущий слайд по клику "назад" по событию click
 		prev.addEventListener('click', function() {
-			slideIndex -= 2;
-			plusSlides();
+			slideIndex -= 2; //уменьшаем slideIndex на 2 единицы (одна единица компенсирует slideIndex++ в функции plusSlides)
+			plusSlides(); //запускаем функцию plusSlides
 		});
-		//показываем следующий слайд по клику "вперед"
+
+		//показываем следующий слайд по клику "вперед" по событию click
 		next.addEventListener('click', function() {
 			plusSlides();
 		});
 
-		//делегируем событие клик обертке точек; показываем слайд, который соответствует нажатой точке
+		//делегируем событие click обертке точек; показываем слайд, который соответствует нажатой точке
 		dotsWrap.addEventListener('click', function(event) {
 			for (let i = 0; i < dots.length + 1; i++) { //i < dots.length + 1, потому что нам нужно сделать дополнительный проход цикла (если нажата четвертая точка, i = 3, и проход цикла закончится
 				//проверяем, что пользователь кликнул именно на точку (event.target имеет класс .dot) и нажата соответствующая точка
 				if (event.target.classList.contains('dot') && event.target == dots[i-1]) {
 					slideIndex = i;
-					showSlides(); //показываем текущий слайд
+					showSlides(); //показываем соответствующий слайд
 				}
 			}
 		});
