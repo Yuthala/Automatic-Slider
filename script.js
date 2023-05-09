@@ -48,8 +48,10 @@ window.addEventListener('DOMContentLoaded', function() { //загрузка ко
 
 		//делегируем событие click обертке точек; показываем слайд, который соответствует нажатой точке
 		dotsWrap.addEventListener('click', function(event) {
-			for (let i = 0; i < dots.length + 1; i++) { //i < dots.length + 1, потому что нам нужно сделать дополнительный проход цикла (если нажата четвертая точка, i = 3, и проход цикла закончится
+			for (let i = 0; i < dots.length + 1; i++) {
+			//i < dots.length + 1, потому что нам нужно сделать дополнительный проход цикла (если нажата четвертая точка, i = 3, и проход цикла закончится
 				//проверяем, что пользователь кликнул именно на точку (event.target имеет класс .dot) и нажата соответствующая точка
+
 				if (event.target.classList.contains('dot') && event.target == dots[i-1]) {
 					slideIndex = i;
 					showSlides(); //показываем соответствующий слайд
