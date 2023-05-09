@@ -31,16 +31,16 @@ window.addEventListener('DOMContentLoaded', function() {
 					slideIndex = slides.length;
 				}
 	
-			slides.forEach((item) => item.style.display = 'none'); //скрываем все слайды
+			slides.forEach((item) => item.classList.remove('slider-item-active')); //скрываем все слайды
 			dots.forEach((item) => item.classList.remove('dot-active')); //скрываем точки
-	
-			slides[slideIndex - 1].style.display = 'block'; //показываем первый слайд (slideIndex = 0)
+
+			slides[slideIndex - 1].classList.add('slider-item-active'); //показываем первый слайд (slideIndex = 0)
 			dots[slideIndex - 1].classList.add('dot-active'); //показываем первую точку
 		}
 		//функция, показывающая следующий слайд
 		function plusSlides() {
 			//showSlides(slideIndex += n); 
-			slideIndex += 1;
+			slideIndex ++;
 			showSlides();
 		}
 
