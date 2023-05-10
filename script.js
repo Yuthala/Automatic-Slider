@@ -16,10 +16,10 @@ window.addEventListener('DOMContentLoaded', function() { //загрузка ко
 		function showSlides() {
 	
 				if (slideIndex > slides.length) { //если мы дошли до последнего слайда
-					slideIndex = 1;
+					slideIndex = 1; //показываем первый слайд
 				}
 				if (slideIndex < 1) { //если мы на первом слайде нажимаем стрелку "назад"
-					slideIndex = slides.length;
+					slideIndex = slides.length; //показываем последний слайд
 				}
 	
 			slides.forEach((item) => item.classList.remove('slider-item-active')); //скрываем все слайды
@@ -49,9 +49,9 @@ window.addEventListener('DOMContentLoaded', function() { //загрузка ко
 		//делегируем событие click обертке точек; показываем слайд, который соответствует нажатой точке
 		dotsWrap.addEventListener('click', function(event) {
 			for (let i = 0; i < dots.length + 1; i++) {
-			//i < dots.length + 1, потому что нам нужно сделать дополнительный проход цикла (если нажата четвертая точка, i = 3, и проход цикла закончится
+			//i < dots.length + 1, потому что нам нужно сделать дополнительный проход цикла (если нажата седьмая точка, то i = 6, и проход цикла закончится
+			
 				//проверяем, что пользователь кликнул именно на точку (event.target имеет класс .dot) и нажата соответствующая точка
-
 				if (event.target.classList.contains('dot') && event.target == dots[i-1]) {
 					slideIndex = i;
 					showSlides(); //показываем соответствующий слайд
